@@ -32,3 +32,7 @@ This project automates a Virtual Machine (VM) so that it fetches and displays th
    ```bash
    git clone https://github.com/mirunaCalugar/weather-motd-vm.git
    cd weather-motd-vm
+
+##  Usage
+```bash
+cat /etc/motd

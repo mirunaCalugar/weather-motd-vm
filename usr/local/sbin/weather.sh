@@ -17,16 +17,24 @@ if [[ "${2:-}" == "--stdout" ]]; then
   stdout_only="yes"
 fi
 
+# Funcție pentru scriere MOTD
 write_motd() {
   local city_line="$1" body="$2"
+  UPTIME=$(uptime -p)
+  DISK=$(df -h / | awk 'NR==2 {print $3 "/" $2 " used (" $5 ")"}')
   {
     echo "==== Welcome to your Dev VM ===="
     echo "City: ${city_line}"
     echo -e "${body}"
+    echo "Uptime: ${UPTIME}"
+    echo "Disk: ${DISK}"
     echo "Hostname: $(hostname)"
     echo "Time: $(date -Is)"
     echo "==============================="
   } > "$out_file"
+
+  # Log în /var/log/weather.log
+  echo "[$(date -Is)] Weather updated for ${city_line}" | tee -a /var/log/weather.log >/dev/null
 }
 
 if [[ "$mode" == "--today" ]]; then
@@ -66,7 +74,6 @@ elif [[ "$mode" == "--week" ]]; then
 
   tmp=$(mktemp)
   {
-    # rezumatul zilei curente
     today_line=$(echo "$forecast" | jq -r '.daily as $d
       | "Today: max " + ($d.temperature_2m_max[0]|floor|tostring)
       + "° / min " + ($d.temperature_2m_min[0]|floor|tostring) + "°"')

@@ -28,3 +28,10 @@ Clone repo:
 ```bash
 git clone https://github.com/mirunaCalugar/weather-motd-vm.git
 cd weather-motd-vm
+
+## ✅ Usage
+
+Show current MOTD (displayed automatically on login):
+```bash
+cat /etc/motd
+

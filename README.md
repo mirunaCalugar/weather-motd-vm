@@ -8,17 +8,19 @@ for a chosen city **at startup** and **on login**, by updating the system MOTD
 
 ## 🎯 Features
 - Fetches weather from [wttr.in](https://wttr.in) (daily) or Open-Meteo (weekly).
-- City is configurable in `/etc/default/weather`.
+- City configurable in `/etc/default/weather`.
 - Clean MOTD on every run (idempotent).
 - Runs automatically at boot using `systemd`.
+- **Bonus:** Shows system uptime and disk usage.
+- **Bonus:** Logs updates in `/var/log/weather.log`.
 
 ---
 
 ## 📂 Files
-- `/usr/local/sbin/weather.sh` – main script (executable)
+- `/usr/local/sbin/weather.sh` – main script (executable, idempotent)
 - `/etc/systemd/system/weather.service` – systemd unit file
-- `/etc/default/weather` – environment configuration (set your city)
-- `README.md` – this documentation
+- `/etc/default/weather` – environment configuration
+- `README.md` – documentation
 
 ---
 

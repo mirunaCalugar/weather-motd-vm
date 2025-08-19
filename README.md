@@ -37,14 +37,22 @@ This project automates a Virtual Machine (VM) so that it fetches and displays th
 1. **Check MOTD**
 ```bash
 cat /etc/motd
+
 2. **Manual refresh**
 ```bash
 sudo systemctl restart weather.service
+
+
 3. **Run directly**
 ```bash
 sudo /usr/local/sbin/weather.sh --today --stdout
 sudo /usr/local/sbin/weather.sh --week --stdout
 
+## 🔄 Changing the City
+
+1. Edit `/etc/default/weather`:
+   ```bash
+   sudo nano /etc/default/weather
 
 
 
